@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Timer, Check, X } from 'lucide-react';
 
 
-const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
+const QuizScreen = ({ onQuizComplete,scoreSend, giveData }) => {
   const [quizData, setQuizData] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -13,12 +13,11 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
 
   // Fetch quiz data using Axios
   useEffect(() => {
-    // const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.jsonserve.com' : '/api'; 
-
     const fetchQuizData = async () => {
       try {
-        const response = await axios.get('/api/quiz');
-
+        const apiUrl = import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_BASE_URL;
+        const response = await axios.get(`${apiUrl}/Uw5CrX`);
+        
         setQuizData(response.data.questions); // Adjust according to API response structure
         giveData(response.data.questions);
         setIsLoading(false);
@@ -42,7 +41,7 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
       setCurrentQuestionIndex(prev => prev + 1);
       setSelectedAnswer(null);
     } else {
-      scoreSend(score, quizData.length);
+      scoreSend(score,quizData.length);
       onQuizComplete("results");
     }
   };
@@ -85,7 +84,7 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
 
           {/* Progress Bar */}
           <div className="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
-            <div
+            <div 
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full transition-all duration-300 ease-out"
               style={{ width: `${((currentQuestionIndex + 1) / quizData.length) * 100}%` }}
             />
@@ -105,8 +104,8 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
                 key={index}
                 onClick={() => handleAnswerSelect(index)}
                 className={`w-full p-4 md:p-5 text-left rounded-xl transition-all duration-200 border
-                  ${selectedAnswer === index
-                    ? 'bg-blue-600/20 border-blue-500 text-blue-300'
+                  ${selectedAnswer === index 
+                    ? 'bg-blue-600/20 border-blue-500 text-blue-300' 
                     : 'bg-gray-700/30 border-gray-600 text-gray-300 hover:bg-gray-700/50 hover:border-gray-500'}`}
               >
                 <div className="flex items-center gap-3">
@@ -128,7 +127,7 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
           onClick={() => handleNextQuestion(currentQuestion.options[selectedAnswer]?.is_correct)}
           disabled={selectedAnswer === null}
           className={`w-full py-4 px-6 rounded-xl text-lg font-semibold transition-all duration-200
-            ${selectedAnswer !== null
+            ${selectedAnswer !== null 
               ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-lg hover:shadow-blue-500/25'
               : 'bg-gray-700 text-gray-500 cursor-not-allowed'}`}
         >
