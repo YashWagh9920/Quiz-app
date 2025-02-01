@@ -1,3 +1,4 @@
+live link :- https://quiz-app-olive-two.vercel.app/
 # Tech Quiz Application
 
 An interactive web application designed to challenge and enhance your technical knowledge. This app provides a smooth quiz-taking experience with multiple-choice questions, real-time feedback, and score tracking.
@@ -53,8 +54,8 @@ An interactive web application designed to challenge and enhance your technical 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/tech-quiz-app.git
-   cd tech-quiz-app
+   git clone https://github.com/YashWagh9920/Quiz-app.git
+   cd Quiz-app
    ```
 
 2. Install dependencies:
