@@ -13,11 +13,11 @@ const QuizScreen = ({ onQuizComplete, scoreSend, giveData }) => {
 
   // Fetch quiz data using Axios
   useEffect(() => {
-    const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.jsonserve.com' : '/api'; 
+    // const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.jsonserve.com' : '/api'; 
 
     const fetchQuizData = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/Uw5CrX`);
+        const response = await axios.get('/api/quiz');
 
         setQuizData(response.data.questions); // Adjust according to API response structure
         giveData(response.data.questions);
