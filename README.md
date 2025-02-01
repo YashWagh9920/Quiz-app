@@ -1,4 +1,4 @@
-live link :- https://quiz-app-olive-two.vercel.app/
+live link :- https://quiz-app-vert-rho.vercel.app/
 # Tech Quiz Application
 
 An interactive web application designed to challenge and enhance your technical knowledge. This app provides a smooth quiz-taking experience with multiple-choice questions, real-time feedback, and score tracking.
