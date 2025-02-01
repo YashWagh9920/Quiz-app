@@ -15,8 +15,7 @@ const QuizScreen = ({ onQuizComplete,scoreSend, giveData }) => {
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
-        const apiUrl = import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_BASE_URL;
-        const response = await axios.get(`${apiUrl}/Uw5CrX`);
+        const response = await axios.get('https://quiz-app-backend-hd2n.onrender.com/proxy');
         
         setQuizData(response.data.questions); // Adjust according to API response structure
         giveData(response.data.questions);
